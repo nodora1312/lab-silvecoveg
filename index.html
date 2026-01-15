@@ -14,27 +14,43 @@
       --muted:#64748b;
       --bg:#f7faf9;
       --card:#ffffff;
+      --maxw:1200px;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
-    .container{max-width:1100px;margin:0 auto;padding:28px}
-    header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a;line-height:1.6;-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw);margin:0 auto;padding:36px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:20px}
     .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#0f4d3f);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
-    nav a{margin-left:14px;text-decoration:none;color:var(--muted);font-weight:600}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#0f4d3f);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px}
+    .titles{min-width:320px}
+    .titles div{line-height:1.1}
+    nav.banner{display:flex;gap:10px;align-items:center}
+    nav.banner button{border:none;background:#eaf6f0;color:var(--accent);padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    nav.banner button.active{background:var(--accent);color:#fff}
     .lang-switch button{margin-left:6px;border:none;background:#e6f2ee;color:var(--accent);padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer}
     .lang-switch button.active{background:var(--accent);color:#fff}
-    h1,h2,h3{margin-top:0}
-    .hero{margin-top:24px;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(31,111,92,0.08),transparent)}
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:22px}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 22px rgba(15,23,42,0.05)}
+
+    h1,h2,h3{margin:0 0 8px 0}
+    p{margin:0 0 12px 0}
+
+    .hero{margin-top:20px;padding:36px;border-radius:14px;background:linear-gradient(180deg,rgba(31,111,92,0.06),transparent)}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:26px;margin-top:26px}
+    .card{background:var(--card);padding:24px;border-radius:14px;box-shadow:0 10px 30px rgba(15,23,42,0.06)}
     .muted{color:var(--muted)}
-    ul{padding-left:18px}
-    li{margin-bottom:6px}
-    footer{text-align:center;margin-top:36px;color:var(--muted);font-size:0.9rem}
+    ul{padding-left:20px;margin:0}
+    li{margin-bottom:8px}
+    footer{text-align:center;margin-top:40px;color:var(--muted);font-size:0.95rem}
+
     [data-lang]{display:none}
     [data-lang].active{display:block}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    [data-page]{display:none}
+    [data-page].page-active{display:block}
+
+    .project{border-left:4px solid var(--accent);padding-left:12px;margin-bottom:12px}
+    .small{font-size:0.95rem}
+
+    @media(max-width:1000px){.grid{grid-template-columns:1fr} .titles{min-width:180px}}
   </style>
 </head>
 <body>
@@ -43,266 +59,273 @@
 <header>
   <div class="brand">
     <div class="logo">LEV</div>
-    <div>
+    <div class="titles">
       <div data-lang="es" class="active" style="font-weight:800">Laboratorio de Silvicultura y Ecología de la Vegetación</div>
       <div data-lang="en" style="font-weight:800">Silviculture and Vegetation Ecology Laboratory</div>
-      <div class="muted" data-lang="es">Universidad de Chile · Departamento de Silvicultura y Conservación de la Naturaleza · Facultad de Ciencias Forestales y Conservación de la Naturaleza</div>
-      <div class="muted" data-lang="en">University of Chile · Department of Silviculture and Nature Conservation· Faculty of Forest Sciences and Nature Conservation</div>
+      <div class="muted" data-lang="es">Universidad de Chile · Departamento de Silvicultura · Facultad de Ciencias Forestales</div>
+      <div class="muted" data-lang="en">University of Chile · Department of Silviculture · Faculty of Forest Sciences</div>
     </div>
   </div>
-  <div class="lang-switch">
-    <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
-    <button id="btn-en" onclick="setLang('en')">EN</button>
+
+  <div style="display:flex;gap:12px;align-items:center">
+    <nav class="banner" role="navigation" aria-label="Main navigation">
+      <button data-nav="home" class="active" onclick="setPage('home')" id="nav-home">Inicio</button>
+      <button data-nav="research" onclick="setPage('research')" id="nav-research">Investigación</button>
+      <button data-nav="team" onclick="setPage('team')" id="nav-team">Equipo</button>
+      <button data-nav="training" onclick="setPage('training')" id="nav-training">Formación profesional</button>
+    </nav>
+
+    <div class="lang-switch">
+      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
   </div>
 </header>
 
-<section class="hero card">
-  <h1 data-lang="es" class="active">Investigación y estudio en ecología y silvicultura forestal</h1>
-  <h1 data-lang="en">Research and teaching in forest ecology and silviculture</h1>
-  <p class="muted" data-lang="es">El laboratorio desarrolla investigación científica y aplicada sobre la estructura, dinámica y manejo de la vegetación, integrando trabajo de campo, análisis cuantitativo y herramientas SIG.</p>
-  <p class="muted" data-lang="en">The laboratory conducts scientific and applied research on vegetation structure, dynamics and management, integrating fieldwork, quantitative analysis and GIS tools.</p>
+<!-- PAGES -->
+
+<!-- HOME -->
+<section data-page="home" class="page-active">
+  <div class="hero card">
+    <h1 data-lang="es" class="active">Investigación y estudio en ecología y silvicultura forestal</h1>
+    <h1 data-lang="en">Research and study in forest ecology and silviculture</h1>
+    <p class="muted" data-lang="es">El laboratorio desarrolla investigación científica y aplicada sobre la estructura, dinámica y manejo de la vegetación, integrando trabajo de campo, análisis cuantitativo y herramientas SIG. Trabajamos en restauración, cartografía, modelación de biomasa y formación de estudiantes.</p>
+    <p class="muted" data-lang="en">The laboratory conducts scientific and applied research on vegetation structure, dynamics and management, integrating fieldwork, quantitative analysis and GIS tools. We work on restoration, mapping, biomass modeling and student training.</p>
+  </div>
+
+  <div class="grid">
+    <main>
+      <section class="card">
+        <h2 data-lang="es" class="active">Resumen de actividades</h2>
+        <h2 data-lang="en">Summary of activities</h2>
+
+        <p data-lang="es" class="small active">Proyectos de campo en bosques nativos, análisis multivariado de composición vegetal, construcción de funciones de biomasa y apoyo en planificación territorial mediante SIG. Ofrecemos proyectos de titulación y prácticas profesionales.</p>
+        <p data-lang="en" class="small">Field projects in native forests, multivariate analysis of vegetation composition, development of biomass functions and territorial planning support using GIS. We offer thesis and internship projects.</p>
+
+        <h3 style="margin-top:14px" data-lang="es" class="active">Servicios y colaboraciones</h3>
+        <h3 style="margin-top:14px" data-lang="en">Services and collaborations</h3>
+        <ul class="muted small">
+          <li data-lang="es" class="active">Asesoría técnica en muestreo de vegetación y análisis de datos.</li>
+          <li data-lang="en">Technical advice in vegetation sampling and data analysis.</li>
+          <li data-lang="es" class="active">Mapeo y clasificación de cobertura vegetal con SIG.</li>
+          <li data-lang="en">Vegetation mapping and classification with GIS.</li>
+        </ul>
+      </section>
+
+      <section class="card" style="margin-top:18px">
+        <h2 data-lang="es" class="active">Noticias rápidas</h2>
+        <h2 data-lang="en">News</h2>
+        <div class="project">
+          <div data-lang="es" class="active"><strong>Trabajo de campo 2026:</strong> Instalación de parcelas permanentes en la Región Metropolitana.</div>
+          <div data-lang="en"><strong>Fieldwork 2026:</strong> Establishment of permanent plots in the Metropolitan Region.</div>
+        </div>
+      </section>
+    </main>
+
+    <aside>
+      <section class="card">
+        <h3 data-lang="es" class="active">Contacto</h3>
+        <h3 data-lang="en">Contact</h3>
+        <p class="muted" data-lang="es" class="active">Coordinador: Dr. Gustavo Cruz<br>Correo: <a href="mailto:lab-silvicultura@uchile.cl">lab-silvicultura@uchile.cl</a></p>
+        <p class="muted" data-lang="en">Coordinator: Dr. Gustavo Cruz<br>Email: <a href="mailto:lab-silvicultura@uchile.cl">lab-silvicultura@uchile.cl</a></p>
+      </section>
+
+      <section class="card" style="margin-top:18px">
+        <h3 data-lang="es" class="active">Enlaces</h3>
+        <h3 data-lang="en">Links</h3>
+        <ul class="muted">
+          <li><a href="#" onclick="setPage('research')">Investigación / Research</a></li>
+          <li><a href="#" onclick="setPage('team')">Equipo / Team</a></li>
+          <li><a href="#" onclick="setPage('training')">Formación / Training</a></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
 </section>
 
-<div class="grid">
-<main>
+<!-- RESEARCH -->
+<section data-page="research" class="card" style="margin-top:20px">
+  <div>
+    <h2 data-lang="es" class="active">Investigación</h2>
+    <h2 data-lang="en">Research</h2>
+    <p class="muted" data-lang="es" class="active">Plantilla para añadir proyectos o publicaciones. Reemplaza los textos marcados con MAYÚSCULAS.</p>
+    <p class="muted" data-lang="en">Template to add projects or publications. Replace texts MARKED IN UPPERCASE.</p>
 
-<section class="card">
-  <h2 data-lang="es" class="active">Líneas de investigación</h2>
-  <h2 data-lang="en">Research areas</h2>
-  <ul class="muted" data-lang="es" class="active">
-    <li>Ecología forestal y silvicultura</li>
-    <li>Dinámica de ecosistemas y sucesión ecológica</li>
-    <li>Cartografía y clasificación de la vegetación</li>
-    <li>Métodos de muestreo de flora y vegetación</li>
-    <li>Sistemas de Información Geográfica (SIG)</li>
-    <li>Alteración y fragmentación de hábitat</li>
-    <li>Construcción de funciones de biomasa y volumen</li>
-  </ul>
-  <ul class="muted" data-lang="en">
-    <li>Forest ecology and silviculture</li>
-    <li>Ecosystem dynamics and ecological succession</li>
-    <li>Vegetation mapping and classification</li>
-    <li>Flora and vegetation sampling methods</li>
-    <li>Geographic Information Systems (GIS)</li>
-    <li>Habitat alteration and fragmentation</li>
-    <li>Biomass and volume function modeling</li>
-  </ul>
+    <!-- Proyecto ejemplo -->
+    <div class="card" style="margin-top:12px">
+      <h3>PROYECTO: NOMBRE DEL PROYECTO / PROJECT: PROJECT TITLE</h3>
+      <p class="muted"><strong data-lang="es" class="active">Resumen:</strong><strong data-lang="en">Summary:</strong> DESCRIPCIÓN CORTA DEL PROYECTO / SHORT PROJECT DESCRIPTION</p>
+      <p class="muted"><strong>Estado / Status:</strong> EN PROCESO / ONGOING</p>
+      <p class="muted"><strong>Co-investigadores / Collaborators:</strong> NOMBRES / NAMES</p>
+      <p class="muted"><strong>Enlace a publicación / Link:</strong> <a href="#">ENLACE_AL_PDF_O_REPOSITORIO</a></p>
+    </div>
+
+    <!-- Plantilla de publicación -->
+    <div class="card" style="margin-top:12px">
+      <h3 data-lang="es" class="active">Publicaciones</h3>
+      <h3 data-lang="en">Publications</h3>
+      <ul class="muted">
+        <li>APELLIDO, A.; APELLIDO, B. (2024). TÍTULO. REVISTA. DOI/O ENLACE</li>
+        <li>APELLIDO, C.; APELLIDO, D. (2023). TÍTULO. INFORME TÉCNICO. ENLACE</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<section class="card" style="margin-top:18px">
-  <h2 data-lang="es" class="active">Dirección del laboratorio</h2>
-  <h2 data-lang="en">Laboratory heads</h2>
+<!-- TEAM -->
+<section data-page="team" style="margin-top:20px">
+  <div class="grid">
+    <main>
+      <section class="card">
+        <h2 data-lang="es" class="active">Equipo</h2>
+        <h2 data-lang="en">Team</h2>
 
-  <ul class="muted" data-lang="es" class="active">
-    <li>
-      Dr. Gustavo Cruz<br>
-      <span class="muted">
-        Ingeniero Forestal, Universidad de Chile ·
-        Dr. Rerum Naturalium, Universidad de Freiburg
-      </span><br>
-      <span class="muted expertise">
-        Áreas de expertise: Silvicultura · Cartografía de la egetación · Ecología Forestal
-      </span>
-    </li>
+        <h3 data-lang="es" class="active">Dirección</h3>
+        <h3 data-lang="en">Heads</h3>
 
-    <li>
-      Dr. Álvaro Promis<br>
-      <span class="muted">
-        Ingeniero Forestal, Universidad de Chile ·
-        Dr. Rerum Naturalium, Universidad de Freiburg
-      </span><br>
-      <span class="muted expertise">
-        Áreas de expertise: Ecología Forestal · Dinámica de ecosistemas · Silvicultura
-      </span>
-    </li>
-  </ul>
+        <div class="card" style="margin-top:10px">
+          <h4>Dr. Gustavo Cruz</h4>
+          <p class="muted" data-lang="es" class="active">Ingeniero Forestal, Universidad de Chile · Dr. Rerum Naturalium, Universidad de Freiburg</p>
+          <p class="muted" data-lang="en">Forest Engineer, University of Chile · Dr. rer. nat., University of Freiburg</p>
+          <p class="muted expertise" data-lang="es" class="active">Áreas de expertise: Silvicultura · Cartografía de la vegetación · Ecología Forestal</p>
+          <p class="muted expertise" data-lang="en">Areas of expertise: Silviculture · Vegetation mapping · Forest Ecology</p>
+        </div>
 
-  <ul class="muted" data-lang="en">
-    <li>
-      Dr. Gustavo Cruz<br>
-      <span class="muted">
-        Forest Engineer, University of Chile ·
-        Dr. rer. nat., University of Freiburg
-      </span><br>
-      <span class="muted expertise">
-        Areas of expertise: Silviculture · Vegetation mapping · Forest Ecology
-      </span>
-    </li>
+        <div class="card" style="margin-top:10px">
+          <h4>Dr. Álvaro Promis</h4>
+          <p class="muted" data-lang="es">Ingeniero Forestal, Universidad de Chile · Dr. Rerum Naturalium, Universidad de Freiburg</p>
+          <p class="muted" data-lang="en">Forest Engineer, University of Chile · Dr. rer. nat., University of Freiburg</p>
+          <p class="muted expertise" data-lang="es">Áreas de expertise: Ecología Forestal · Dinámica de ecosistemas · Silvicultura</p>
+          <p class="muted expertise" data-lang="en">Areas of expertise: Forest Ecology · Ecosystem dynamics · Silviculture</p>
+        </div>
 
-    <li>
-      Dr. Álvaro Promis<br>
-      <span class="muted">
-        Forest Engineer, University of Chile ·
-        Dr. rer. nat., University of Freiburg
-      </span><br>
-      <span class="muted expertise">
-        Areas of expertise: Forest Ecology · Ecosistems dynamics · Silviculture
-      </span>
-    </li>
-  </ul>
-</section>
+        <h3 style="margin-top:12px" data-lang="es" class="active">Investigadores asociados</h3>
+        <h3 data-lang="en">Associated researchers</h3>
 
+        <div class="card" style="margin-top:8px">
+          <h4>Cecilia Briceño</h4>
+          <p class="muted" data-lang="es" class="active">Ingeniera Forestal, Universidad de Chile</p>
+          <p class="muted" data-lang="en">Forest Engineer, University of Chile</p>
+          <p class="muted expertise" data-lang="es">Áreas de expertise: Legislación Ambiental · Manejo de ecosistemas · Ecología Forestal</p>
+          <p class="muted expertise" data-lang="en">Areas of expertise: Environmental legislation · Ecosystem management · Forest ecology</p>
+        </div>
 
+        <div class="card" style="margin-top:8px">
+          <h4>Nodora L. Moyano</h4>
+          <p class="muted" data-lang="es" class="active">Ingeniera Forestal, Universidad de Chile</p>
+          <p class="muted" data-lang="en">Forest Engineer, University of Chile</p>
+          <p class="muted expertise" data-lang="es">Áreas de expertise: Silvicultura · Botánica · Cartografía de la vegetación</p>
+          <p class="muted expertise" data-lang="en">Areas of expertise: Silviculture · Botany · Vegetation mapping</p>
+        </div>
 
-</main>
+        <div class="card" style="margin-top:8px">
+          <h4>Patricio Tapia</h4>
+          <p class="muted" data-lang="es" class="active">Ingeniero Forestal, Universidad de Chile</p>
+          <p class="muted" data-lang="en">Forest Engineer, University of Chile</p>
+          <p class="muted expertise" data-lang="es">Áreas de expertise: Modelación · Análisis de datos · Cartografía de la vegetación</p>
+          <p class="muted expertise" data-lang="en">Areas of expertise: Modelling · Data analysis · Vegetation mapping</p>
+        </div>
 
-<aside>
+      </section>
 
-<section class="card">
-  <h3 data-lang="es" class="active">Investigadores asociados</h3>
-  <h3 data-lang="en">Associated researchers</h3>
+    </main>
 
-  <ul class="muted" data-lang="es" class="active">
-    <li>
-      Cecilia Briceño<br>
-      <span class="muted">Ingeniera Forestal, Universidad de Chile</span><br>
-      <span class="muted expertise">
-        Áreas de expertise: Legislación Ambiental · Manejo de ecosistemas · Ecología Forestal 
-      </span>
-    </li>
+    <aside>
+      <section class="card">
+        <h3 data-lang="es" class="active">Memorantes actuales</h3>
+        <h3 data-lang="en">Current undergraduate students</h3>
 
-    <li>
-      Nodora L. Moyano<br>
-      <span class="muted">Ingeniera Forestal, Universidad de Chile</span><br>
-      <span class="muted expertise">
-        Áreas de expertise: Silvicultura · Botánica · Cartografía de la vegetación
-      </span>
-    </li>
-
-    <li>
-      Patricio Tapia<br>
-      <span class="muted">Ingeniero Forestal, Universidad de Chile</span><br>
-      <span class="muted expertise">
-        Áreas de expertise: Modelación · Análisis de datos · Cartografía de la vegetación
-      </span>
-    </li>
-  </ul>
-
-  <ul class="muted" data-lang="en">
-    <li>
-      Cecilia Briceño<br>
-      <span class="muted">Forest Engineer, University of Chile</span><br>
-      <span class="muted expertise">
-        Areas of expertise: AREA 1 · AREA 2
-      </span>
-    </li>
-
-    <li>
-      Nodora L. Moyano<br>
-      <span class="muted">Forest Engineer, University of Chile</span><br>
-      <span class="muted expertise">
-        Areas of expertise: AREA 1 · AREA 2
-      </span>
-    </li>
-
-    <li>
-      Patricio Tapia<br>
-      <span class="muted">Forest Engineer, University of Chile</span><br>
-      <span class="muted expertise">
-        Areas of expertise: AREA 1 · AREA 2
-      </span>
-    </li>
-  </ul>
-</section>
-
-
-
-<section class="card" style="margin-top:18px">
-  <h3 data-lang="es" class="active">Memorantes actuales</h3>
-  <h3 data-lang="en">Current undergraduate students</h3>
-
-  <ul class="muted" data-lang="es" class="active">
-    <li>
-      Martín Inostroza<br>
-      <span class="muted thesis">Memoria: DISTRIBUCIÓN Y CARACTERÍSTICAS ESTRUCTURALES DE LAS AGRUPACIONES DE Austrocedrus chilensis (D. Don.) Pic. Serm. et Biz. COMO BASE PARA SU CONSERVACIÓN EN LA COMUNA DE SAN JOSÉ DE MAIPO, REGIÓN METROPOLITANA</span>
-    </li>
-    <li>
-      Daisy Espinoza<br>
-      <span class="muted thesis">Memoria: ANALISIS DE LA ESTRUCTURA Y COMPOSICION DEL BOSQUE Y MATORRAL ESCLEROFILO Y SU INFLUENCIA EN LA PRODUCCION MELIFERA EN APIARIOS DE LA COMUNA DE PIRQUE, CHILE </span>
-    </li>
-    <li>
-      Isidora Pérez<br>
-      <span class="muted thesis">Memoria: EVALUACIÓN Y ACTUALIZACIÓN DE ENSAYOS SILVICULTURALES EN BOSQUES DE LENGA Nothofagus pumilio (Poepp. et Endl.) Krasser EN TIERRA DEL FUEGO, REGIÓN DE MAGALLANES Y LA ANTÁRTICA CHILENA</span>
-    </li>
-    <li>
-      Rodrigo Baeza<br>
-      <span class="muted thesis">Memoria: TÍTULO DE LA MEMORIA</span>
-    </li>
-    <li>
-      Valentina Pérez<br>
-      <span class="muted thesis">Memoria: EVALUACIÓN DEL CRECIMIENTO DE UN BOSQUE MIXTO DE LENGA (Nothofagus pumilio (Poepp. et Endl.) Krasser) Y COIHUE DE MAGALLANES (Nothofagus betuloides (Mirb.) Oerst.) BAJO DOS SISTEMAS SILVÍCOLAS EN LA REGIÓN DE MAGALLANES Y LA ANTÁRTICA CHILENA
+        <ul class="muted" data-lang="es" class="active">
+          <li>
+            Martín Inostroza<br>
+            <span class="muted thesis">Memoria: DISTRIBUCIÓN Y CARACTERÍSTICAS ESTRUCTURALES DE LAS AGRUPACIONES DE Austrocedrus chilensis (D. Don.) Pic. Serm. et Biz. COMO BASE PARA SU CONSERVACIÓN EN LA COMUNA DE SAN JOSÉ DE MAIPO, REGIÓN METROPOLITANA</span>
+          </li>
+          <li>
+            Daisy Espinoza<br>
+            <span class="muted thesis">Memoria: ANALISIS DE LA ESTRUCTURA Y COMPOSICION DEL BOSQUE Y MATORRAL ESCLEROFILO Y SU INFLUENCIA EN LA PRODUCCION MELIFERA EN APIARIOS DE LA COMUNA DE PIRQUE, CHILE </span>
+          </li>
+          <li>
+            Isidora Pérez<br>
+            <span class="muted thesis">Memoria: EVALUACIÓN Y ACTUALIZACIÓN DE ENSAYOS SILVICULTURALES EN BOSQUES DE LENGA Nothofagus pumilio (Poepp. et Endl.) Krasser EN TIERRA DEL FUEGO, REGIÓN DE MAGALLANES Y LA ANTÁRTICA CHILENA</span>
+          </li>
+          <li>
+            Rodrigo Baeza<br>
+            <span class="muted thesis">Memoria: TÍTULO DE LA MEMORIA</span>
+          </li>
+          <li>
+            Valentina Pérez<br>
+            <span class="muted thesis">Memoria: EVALUACIÓN DEL CRECIMIENTO DE UN BOSQUE MIXTO DE LENGA (Nothofagus pumilio (Poepp. et Endl.) Krasser) Y COIHUE DE MAGALLANES (Nothofagus betuloides (Mirb.) Oerst.) BAJO DOS SISTEMAS SILVÍCOLAS EN LA REGIÓN DE MAGALLANES Y LA ANTÁRTICA CHILENA
 </span>
-    </li>
-    <li>
-      Pedro Lara<br>
-      <span class="muted thesis">Memoria: TÍTULO DE LA MEMORIA</span>
-    </li>
-    <li>
-      Camila Millaguir<br>
-      <span class="muted thesis">Memoria: CARACTERIZACIÓN Y EVALUACIÓN DE LA ALTERACIÓN DE HABITAT EN UNA POBLACIÓN DE Austrocedrus chilensis (D. Don) Pic. Serm et Bizzarri EN LA COMUNA DE CODEGUA, REGIÓN DEL LIBERTADOR BERNARDO O´HIGGINS, CHILE</span>
-    </li>
-    <li>
-      Josefa Espinoza<br>
-      <span class="muted thesis">Memoria: TÍTULO DE LA MEMORIA</span>
-    </li>
-  </ul>
+          </li>
+          <li>
+            Pedro Lara<br>
+            <span class="muted thesis">Memoria: TÍTULO DE LA MEMORIA</span>
+          </li>
+          <li>
+            Camila Millaguir<br>
+            <span class="muted thesis">Memoria: CARACTERIZACIÓN Y EVALUACIÓN DE LA ALTERACIÓN DE HABITAT EN UNA POBLACIÓN DE Austrocedrus chilensis (D. Don) Pic. Serm et Bizzarri EN LA COMUNA DE CODEGUA, REGIÓN DEL LIBERTADOR BERNARDO O´HIGGINS, CHILE</span>
+          </li>
+          <li>
+            Josefa Espinoza<br>
+            <span class="muted thesis">Memoria: TÍTULO DE LA MEMORIA</span>
+          </li>
+        </ul>
 
-  <ul class="muted" data-lang="en">
-    <li>
-      Martín Inostroza<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-    <li>
-      Daisy Espinoza<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-    <li>
-      Isidora Pérez<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-    <li>
-      Rodrigo Baeza<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-    <li>
-      Valentina Pérez<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-    <li>
-      Pedro Lara<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-    <li>
-      Camila Millaguir<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-    <li>
-      Josefa Espinoza<br>
-      <span class="muted thesis">Thesis: THESIS TITLE</span>
-    </li>
-  </ul>
+        <ul class="muted" data-lang="en">
+          <li>Martín Inostroza — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+          <li>Daisy Espinoza — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+          <li>Isidora Pérez — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+          <li>Rodrigo Baeza — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+          <li>Valentina Pérez — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+          <li>Pedro Lara — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+          <li>Camila Millaguir — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+          <li>Josefa Espinoza — <span class="muted thesis">Thesis: THESIS TITLE</span></li>
+        </ul>
+
+      </section>
+
+      <section class="card" style="margin-top:18px">
+        <h3 data-lang="es" class="active">Memorantes anteriores</h3>
+        <h3 data-lang="en">Former undergraduate students</h3>
+        <ul class="muted" data-lang="es" class="active">
+          <li>Esire Encina</li>
+          <li>Matías Flores</li>
+          <li>Martín Vega</li>
+          <li>Emilia Loyola</li>
+        </ul>
+        <ul class="muted" data-lang="en">
+          <li>Esire Encina</li>
+          <li>Matías Flores</li>
+          <li>Martín Vega</li>
+          <li>Emilia Loyola</li>
+        </ul>
+      </section>
+    </aside>
+  </div>
 </section>
 
+<!-- TRAINING -->
+<section data-page="training" class="card" style="margin-top:20px">
+  <h2 data-lang="es" class="active">Formación profesional</h2>
+  <h2 data-lang="en">Professional training</h2>
+  <p class="muted" data-lang="es" class="active">Plantilla para añadir cursos dictados en docencia y prácticas profesionales. Reemplaza los campos en MAYÚSCULAS.</p>
+  <p class="muted" data-lang="en">Template to add courses taught and internships. Replace FIELDS IN UPPERCASE.</p>
 
-<section class="card" style="margin-top:18px">
-  <h3 data-lang="es" class="active">Memorantes anteriores</h3>
-  <h3 data-lang="en">Former undergraduate students</h3>
-  <ul class="muted" data-lang="es" class="active">
-    <li>Esire Encina</li>
-    <li>Matías Flores</li>
-    <li>Martín Vega</li>
-    <li>Emilia Loyola</li>
-  </ul>
-  <ul class="muted" data-lang="en">
-    <li>Esire Encina</li>
-    <li>Matías Flores</li>
-    <li>Martín Vega</li>
-    <li>Emilia Loyola</li>
-  </ul>
+  <div class="card" style="margin-top:12px">
+    <h3 data-lang="es" class="active">Curso: NOMBRE DEL CURSO</h3>
+    <h3 data-lang="en">Course: COURSE TITLE</h3>
+    <p class="muted"><strong data-lang="es" class="active">Descripción:</strong><strong data-lang="en">Description:</strong> BREVE DESCRIPCIÓN DEL CURSO / BRIEF DESCRIPTION</p>
+    <p class="muted"><strong>Duración / Duration:</strong> NÚMERO DE HORAS / HOURS</p>
+    <p class="muted"><strong>Dirigido a / Target students:</strong> CARRERAS O NIVELES</p>
+  </div>
+
+  <section style="margin-top:14px">
+    <h3 data-lang="es" class="active">Antiguos memorantes (sección)</h3>
+    <h3 data-lang="en">Former undergraduate students (section)</h3>
+    <p class="muted" data-lang="es" class="active">Puedes listar aquí a antiguos memorantes y enlaces a sus trabajos.</p>
+    <p class="muted" data-lang="en">You can list former students here and links to their theses.</p>
+  </section>
 </section>
-
-</aside>
-</div>
 
 <footer>
   <div>© <span id="year"></span> · Laboratorio de Ecología de la Vegetación · Universidad de Chile</div>
@@ -320,11 +343,21 @@ function setLang(lang){
   document.documentElement.lang = lang;
 }
 
-// Inicializar idioma por defecto al cargar la página
+function setPage(page){
+  // hide all pages
+  document.querySelectorAll('[data-page]').forEach(p => p.classList.remove('page-active'));
+  // show requested
+  const el = document.querySelector('[data-page="'+page+'"]');
+  if(el) el.classList.add('page-active');
+  // update banner active
+  document.querySelectorAll('nav.banner button').forEach(b => b.classList.toggle('active', b.getAttribute('data-nav')===page));
+  // update hash for deep linking
+  window.location.hash = page;
+}
+
+// Inicializar idioma y página por defecto al cargar la página
 window.addEventListener('DOMContentLoaded', () => {
   setLang('es');
-  document.getElementById('year').textContent = new Date().getFullYear();
-});
-</script>
-</body>
-</html>
+  const initial = (window.location.hash||'#home').replace('#','') || 'home';
+  setPage(initial);
+  document.getElementById('year').textContent = new
