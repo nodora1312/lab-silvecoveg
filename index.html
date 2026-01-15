@@ -18,7 +18,7 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a;line-height:1.6;-webkit-font-smoothing:antialiased}
+    body{margin:0;font-family: "Libre Baskerville", "Baskerville", "Baskerville Old Face", "Garamond", "Times New Roman", serif;background:var(--bg);color:#0f172a;line-height:1.6;-webkit-font-smoothing:antialiased}
     .container{max-width:var(--maxw);margin:0 auto;padding:36px}
     header{display:flex;justify-content:space-between;align-items:center;gap:20px}
     .brand{display:flex;gap:14px;align-items:center}
@@ -344,20 +344,27 @@ function setLang(lang){
 }
 
 function setPage(page){
-  // hide all pages
-  document.querySelectorAll('[data-page]').forEach(p => p.classList.remove('page-active'));
-  // show requested
-  const el = document.querySelector('[data-page="'+page+'"]');
-  if(el) el.classList.add('page-active');
-  // update banner active
-  document.querySelectorAll('nav.banner button').forEach(b => b.classList.toggle('active', b.getAttribute('data-nav')===page));
-  // update hash for deep linking
+  document.querySelectorAll('[data-page]').forEach(sec => {
+    sec.style.display = sec.getAttribute('data-page') === page ? 'block' : 'none';
+  });
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-target') === page);
+  });
   window.location.hash = page;
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const page = window.location.hash.replace('#','') || 'home';
+  setPage(page);
+});
 
 // Inicializar idioma y página por defecto al cargar la página
 window.addEventListener('DOMContentLoaded', () => {
   setLang('es');
   const initial = (window.location.hash||'#home').replace('#','') || 'home';
   setPage(initial);
-  document.getElementById('year').textContent = new
+  document.getElementById('year').textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>
