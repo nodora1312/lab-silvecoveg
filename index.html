@@ -4,149 +4,80 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Laboratorio de Silvicultura y Ecología de la Vegetación</title>
-  <meta name="description" content="Laboratorio universitario dedicado al estudio de la silvicultura y la ecología de la vegetación. Proyectos, equipo, publicaciones y contacto." />
+  <meta name="description" content="Laboratorio universitario dedicado a la silvicultura y ecología de la vegetación." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{--accent:#2c6f4a;--muted:#6b7280;--bg:#f7faf7;--card:#ffffff}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;smooth:antialiased;margin:0;background:var(--bg);color:#0f172a}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;background:var(--bg);color:#0f172a}
     .container{max-width:1000px;margin:0 auto;padding:28px}
     header{display:flex;align-items:center;justify-content:space-between;gap:18px}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#106950);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
     nav a{margin-left:14px;text-decoration:none;color:var(--muted);font-weight:600}
+    .lang-switch button{margin-left:6px;border:none;background:#eef7ef;color:var(--accent);padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer}
+    .lang-switch button.active{background:var(--accent);color:#fff}
     .hero{background:linear-gradient(180deg, rgba(44,111,74,0.06), transparent);padding:26px;border-radius:12px;margin-top:20px}
-    .hero h1{margin:0;font-size:clamp(20px,3vw,32px)}
     .grid{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:18px}
     .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(11,22,16,0.04)}
     .muted{color:var(--muted);font-size:0.95rem}
-    .research-list{display:grid;gap:8px}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef7ef;color:var(--accent);font-weight:600;font-size:0.85rem}
-    .people{display:flex;flex-direction:column;gap:12px}
-    .person{display:flex;gap:12px;align-items:center}
-    .person img{width:56px;height:56px;border-radius:8px;object-fit:cover}
     footer{margin-top:28px;padding:18px;text-align:center;color:var(--muted);font-size:0.9rem}
-    .pubs li{margin-bottom:8px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr;}.logo{width:46px;height:46px}}
     .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
-    .top-links{display:flex;gap:8px;flex-wrap:wrap}
+    [data-lang]{display:none}
+    [data-lang].active{display:block}
+    @media (max-width:900px){.grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">LS</div>
-        <div>
-          <div style="font-weight:700">Laboratorio de Silvicultura y Ecología de la Vegetación</div>
-          <div class="muted" style="font-size:0.9rem">Universidad — Departamento / Facultad</div>
-        </div>
-      </div>
-      <nav class="muted">
-        <a href="#about">Acerca</a>
-        <a href="#research">Investigación</a>
-        <a href="#people">Equipo</a>
-        <a href="#publications">Publicaciones</a>
-        <a href="#contact">Contacto</a>
-      </nav>
-    </header>
-
-    <section class="hero card">
-      <h1>Investigamos la dinámica, manejo y conservación de ecosistemas forestales.</h1>
-      <p class="muted">Proyectos en restauración, diversidad vegetal, respuestas a perturbaciones y manejo sostenible. Nuestro laboratorio combina trabajo de campo, análisis multivariado y modelación.</p>
-      <div style="margin-top:12px" class="top-links">
-        <a class="btn" href="#contact">Contactar</a>
-        <a style="align-self:center;text-decoration:none;color:var(--muted)" href="#publications">Ver publicaciones</a>
-      </div>
-    </section>
-
-    <div class="grid">
-      <main>
-        <section id="about" class="card">
-          <h2>Acerca del laboratorio</h2>
-          <p class="muted">El Laboratorio de Silvicultura y Ecología de la Vegetación es un grupo académico que desarrolla investigación aplicada y básica sobre la estructura y función de bosques y matorrales. Ofrecemos formación de pre y posgrado, colaboraciones con agencias gubernamentales y asesorías técnicas.</p>
-          <h3 style="margin-top:14px">Misión</h3>
-          <p class="muted">Generar conocimiento científico para el manejo sostenible y la conservación de vegetación nativa, integrando métodos tradicionales y herramientas modernas (ordenación, análisis de composición, índices de diversidad, modelación espacial).</p>
-        </section>
-
-        <section id="research" class="card" style="margin-top:14px">
-          <h2>Líneas de investigación</h2>
-          <div class="research-list muted">
-            <div><span class="pill">Composición y diversidad</span> — Dinámica alfa y beta de comunidades vegetales, análisis multivariado (PCoA, NMDS), rareza y endemismo.</div>
-            <div><span class="pill">Restauración y manejo</span> — Técnicas de regeneración, plantaciones mixtas y manejo adaptativo.</div>
-            <div><span class="pill">Respuestas a disturbios</span> — Efectos de incendios, plagas y sequías en la recuperación vegetal.</div>
-            <div><span class="pill">Modelación y GIS</span> — Modelos de distribución, mapeo de cobertura y análisis espacial.</div>
-          </div>
-
-          <h3 style="margin-top:12px">Proyectos actuales</h3>
-          <ul class="muted">
-            <li>Reconstrucción de estructura vegetal post-incendio en rodales de cipres.</li>
-            <li>Evaluación de diversidad funcional en plantaciones mixtas.</li>
-            <li>Banco de datos de parcelas permanentes (cobertura porcentual).</li>
-          </ul>
-        </section>
-
-        <section id="publications" class="card" style="margin-top:14px">
-          <h2>Publicaciones (ejemplos)</h2>
-          <ul class="pubs muted">
-            <li>Apellido A., Apellido B. (2024). Título del estudio. Revista Ejemplo.</li>
-            <li>Apellido C., Apellido D. (2023). Análisis de composición vegetal en bosques de cipres. Documento técnico.</li>
-            <li>Más publicaciones y tesis disponibles en el repositorio del laboratorio.</li>
-          </ul>
-        </section>
-
-      </main>
-
-      <aside>
-        <div class="card">
-          <h3>Contacto rápido</h3>
-          <p class="muted">Coordinador: Dr./Dra. Nombre Apellido<br>Correo: <a href="mailto:lab-silvicultura@universidad.cl">lab-silvicultura@universidad.cl</a></p>
-          <p class="muted">Dirección: Facultad / Departamento — Universidad</p>
-          <p style="margin-top:12px"><a class="btn" href="mailto:lab-silvicultura@universidad.cl">Enviar correo</a></p>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3 id="people">Equipo</h3>
-          <div class="people">
-            <div class="person">
-              <img src="https://via.placeholder.com/120" alt="Foto del jefe de laboratorio">
-              <div>
-                <div style="font-weight:700">Dr. Nombre Apellido</div>
-                <div class="muted">Investigador principal</div>
-              </div>
-            </div>
-            <div class="person">
-              <img src="https://via.placeholder.com/120" alt="Foto estudiante">
-              <div>
-                <div style="font-weight:700">Apellido Estudiante</div>
-                <div class="muted">Estudiante de posgrado</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3>Enlaces útiles</h3>
-          <p class="muted"><a href="#research">Proyectos</a> · <a href="#publications">Publicaciones</a> · <a href="#contact">Formulario</a></p>
-        </div>
-      </aside>
+<div class="container">
+<header>
+  <div class="brand">
+    <div class="logo">LS</div>
+    <div>
+      <div data-lang="es" class="active" style="font-weight:700">Laboratorio de Silvicultura y Ecología de la Vegetación</div>
+      <div data-lang="en" style="font-weight:700">Laboratory of Silviculture and Vegetation Ecology</div>
+      <div class="muted" data-lang="es">Universidad — Departamento / Facultad</div>
+      <div class="muted" data-lang="en">University — Department / Faculty</div>
     </div>
-
-    <section id="contact" class="card" style="margin-top:18px">
-      <h2>Contacto y colaboraciones</h2>
-      <p class="muted">Si quieres colaborar o visitar el laboratorio, escríbenos a <a href="mailto:lab-silvicultura@universidad.cl">lab-silvicultura@universidad.cl</a> o completa el formulario de contacto.</p>
-      <!-- Si prefieres un formulario en línea, puedes insertar aquí el iframe de Google Forms -->
-    </section>
-
-    <footer>
-      <div class="muted">© <span id="year"></span> Laboratorio de Silvicultura y Ecología de la Vegetación — Universidad</div>
-    </footer>
   </div>
+  <div class="lang-switch">
+    <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</header>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+<section class="hero card">
+  <h1 data-lang="es" class="active">Investigamos la dinámica, manejo y conservación de ecosistemas forestales.</h1>
+  <h1 data-lang="en">We study the dynamics, management and conservation of forest ecosystems.</h1>
+  <p class="muted" data-lang="es">Proyectos en restauración, diversidad vegetal y manejo sostenible.</p>
+  <p class="muted" data-lang="en">Projects on restoration, plant diversity and sustainable management.</p>
+</section>
+
+<section class="card" style="margin-top:18px">
+  <h2 data-lang="es" class="active">Acerca del laboratorio</h2>
+  <h2 data-lang="en">About the laboratory</h2>
+  <p class="muted" data-lang="es">Grupo académico dedicado al estudio de la estructura y función de comunidades vegetales.</p>
+  <p class="muted" data-lang="en">Academic group focused on the structure and function of plant communities.</p>
+</section>
+
+<footer>
+  <div class="muted">© <span id="year"></span> Laboratorio de Silvicultura y Ecología de la Vegetación</div>
+</footer>
+</div>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    el.classList.toggle('active', el.getAttribute('data-lang')===lang);
+  });
+  document.getElementById('btn-es').classList.toggle('active', lang==='es');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.documentElement.lang = lang;
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
