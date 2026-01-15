@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laboratorio de Ecología de la Vegetación | Universidad de Chile</title>
+  <meta name="description" content="Laboratorio de Ecología de la Vegetación, Universidad de Chile. Research in forest ecology, silviculture, vegetation cartography and GIS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#1f6f5c;
+      --muted:#64748b;
+      --bg:#f7faf9;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#0f4d3f);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+    nav a{margin-left:14px;text-decoration:none;color:var(--muted);font-weight:600}
+    .lang-switch button{margin-left:6px;border:none;background:#e6f2ee;color:var(--accent);padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer}
+    .lang-switch button.active{background:var(--accent);color:#fff}
+    h1,h2,h3{margin-top:0}
+    .hero{margin-top:24px;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(31,111,92,0.08),transparent)}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:22px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 22px rgba(15,23,42,0.05)}
+    .muted{color:var(--muted)}
+    ul{padding-left:18px}
+    li{margin-bottom:6px}
+    footer{text-align:center;margin-top:36px;color:var(--muted);font-size:0.9rem}
+    [data-lang]{display:none}
+    [data-lang].active{display:block}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">LEV</div>
+    <div>
+      <div data-lang="es" class="active" style="font-weight:800">Laboratorio de Ecología de la Vegetación</div>
+      <div data-lang="en" style="font-weight:800">Vegetation Ecology Laboratory</div>
+      <div class="muted" data-lang="es">Universidad de Chile · Departamento de Silvicultura · Facultad de Ciencias Forestales</div>
+      <div class="muted" data-lang="en">University of Chile · Department of Silviculture · Faculty of Forest Sciences</div>
+    </div>
+  </div>
+  <div class="lang-switch">
+    <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+<section class="hero card">
+  <h1 data-lang="es" class="active">Investigación y docencia en ecología y silvicultura forestal</h1>
+  <h1 data-lang="en">Research and teaching in forest ecology and silviculture</h1>
+  <p class="muted" data-lang="es">El laboratorio desarrolla investigación científica y aplicada sobre la estructura, dinámica y manejo de la vegetación, integrando trabajo de campo, análisis cuantitativo y herramientas SIG.</p>
+  <p class="muted" data-lang="en">The laboratory conducts scientific and applied research on vegetation structure, dynamics and management, integrating fieldwork, quantitative analysis and GIS tools.</p>
+</section>
+
+<div class="grid">
+<main>
+
+<section class="card">
+  <h2 data-lang="es" class="active">Líneas de investigación</h2>
+  <h2 data-lang="en">Research areas</h2>
+  <ul class="muted" data-lang="es" class="active">
+    <li>Ecología forestal y silvicultura</li>
+    <li>Cartografía y clasificación de la vegetación</li>
+    <li>Métodos de muestreo de flora y vegetación</li>
+    <li>Sistemas de Información Geográfica (SIG)</li>
+    <li>Alteración y fragmentación de hábitat</li>
+    <li>Construcción de funciones de biomasa y volumen</li>
+  </ul>
+  <ul class="muted" data-lang="en">
+    <li>Forest ecology and silviculture</li>
+    <li>Vegetation mapping and classification</li>
+    <li>Flora and vegetation sampling methods</li>
+    <li>Geographic Information Systems (GIS)</li>
+    <li>Habitat alteration and fragmentation</li>
+    <li>Biomass and volume function modeling</li>
+  </ul>
+</section>
+
+<section class="card" style="margin-top:18px">
+  <h2 data-lang="es" class="active">Dirección del laboratorio</h2>
+  <h2 data-lang="en">Laboratory heads</h2>
+  <ul class="muted" data-lang="es" class="active">
+    <li>Dr. Gustavo Cruz</li>
+    <li>Dr. Álvaro Promis</li>
+  </ul>
+  <ul class="muted" data-lang="en">
+    <li>Dr. Gustavo Cruz</li>
+    <li>Dr. Álvaro Promis</li>
+  </ul>
+</section>
+
+</main>
+
+<aside>
+
+<section class="card">
+  <h3 data-lang="es" class="active">Investigadores asociados</h3>
+  <h3 data-lang="en">Associated researchers</h3>
+  <ul class="muted" data-lang="es" class="active">
+    <li>Cecilia Briceño</li>
+    <li>Nodora L. Moyano</li>
+    <li>Patricio Tapia</li>
+  </ul>
+  <ul class="muted" data-lang="en">
+    <li>Cecilia Briceño</li>
+    <li>Nodora L. Moyano</li>
+    <li>Patricio Tapia</li>
+  </ul>
+</section>
+
+<section class="card" style="margin-top:18px">
+  <h3 data-lang="es" class="active">Memorantes actuales</h3>
+  <h3 data-lang="en">Current undergraduate students</h3>
+  <ul class="muted" data-lang="es" class="active">
+    <li>Martín Inostroza</li>
+    <li>Daisy Espinoza</li>
+    <li>Isidora Pérez</li>
+    <li>Rodrigo Baeza</li>
+    <li>Valentina Pérez</li>
+    <li>Pedro Lara</li>
+    <li>Camila Millaguir</li>
+    <li>Josefa Espinoza</li>
+  </ul>
+  <ul class="muted" data-lang="en">
+    <li>Martín Inostroza</li>
+    <li>Daisy Espinoza</li>
+    <li>Isidora Pérez</li>
+    <li>Rodrigo Baeza</li>
+    <li>Valentina Pérez</li>
+    <li>Pedro Lara</li>
+    <li>Camila Millaguir</li>
+    <li>Josefa Espinoza</li>
+  </ul>
+</section>
+
+<section class="card" style="margin-top:18px">
+  <h3 data-lang="es" class="active">Memorantes anteriores</h3>
+  <h3 data-lang="en">Former undergraduate students</h3>
+  <ul class="muted" data-lang="es" class="active">
+    <li>Esire Encina</li>
+    <li>Matías Flores</li>
+    <li>Javiera Fuenzalida</li>
+    <li>Martín Vega</li>
+    <li>Emilia Loyola</li>
+  </ul>
+  <ul class="muted" data-lang="en">
+    <li>Esire Encina</li>
+    <li>Matías Flores</li>
+    <li>Martín Vega</li>
+    <li>Emilia Loyola</li>
+  </ul>
+</section>
+
+</aside>
+</div>
+
+<footer>
+  <div>© <span id="year"></span> · Laboratorio de Ecología de la Vegetación · Universidad de Chile</div>
+</footer>
+
+</div>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    el.classList.toggle('active', el.getAttribute('data-lang')===lang);
+  });
+  document.getElementById('btn-es').classList.toggle('active', lang==='es');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.documentElement.lang = lang;
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
